@@ -21,4 +21,7 @@ jobs:
         run: npm install
 
       - name: Roda o script
+        env:
+          AMBIENTE_LAB: laboratorio-github-actions
+          SEGREDO_LAB: ${{ secrets.SEGREDO_LAB }}
         run: npm start

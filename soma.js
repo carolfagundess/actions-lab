@@ -10,3 +10,7 @@ if (soma(2, 3) !== 5) {
 }
 
 console.log('Tudo certo!');
+
+// Novo: lendo variáveis de ambiente
+console.log('Ambiente (env comum):', process.env.AMBIENTE_LAB);
+console.log('Segredo existe?', process.env.SEGREDO_LAB ? 'sim' : 'não');
