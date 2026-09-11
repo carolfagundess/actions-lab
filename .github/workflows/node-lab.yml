@@ -44,6 +44,11 @@ jobs:
           PGPASSWORD: lab_pass
         run: psql -h localhost -U lab_user -d lab_db -c "SELECT 'Conectei no Postgres do CI!' AS resultado;"
 
+      - name: Roda os testes jest
+        env:
+          DB_HOST: localhost
+        run: npm test
+
       - name: Roda o script
         env:
           AMBIENTE_LAB: laboratorio-github-actions

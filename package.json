@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "node soma.js"
+    "start": "node soma.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "devDependencies": {
+    "jest": "^30.5.1",
+    "pg": "^8.23.0"
   }
 }
