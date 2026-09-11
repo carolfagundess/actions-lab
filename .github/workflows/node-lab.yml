@@ -8,6 +8,22 @@ on:
 jobs:
   rodar-node:
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: lab_user
+          POSTGRES_PASSWORD: lab_pass
+          POSTGRES_DB: lab_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - name: Faz checkout do código
         uses: actions/checkout@v4
@@ -19,6 +35,14 @@ jobs:
 
       - name: Instala dependências
         run: npm install
+
+      - name: Instala o cliente de linha de comando do Postgres
+        run: sudo apt-get install --yes postgresql-client
+
+      - name: Testa conexão com o Postgres
+        env:
+          PGPASSWORD: lab_pass
+        run: psql -h localhost -U lab_user -d lab_db -c "SELECT 'Conectei no Postgres do CI!' AS resultado;"
 
       - name: Roda o script
         env:
