@@ -1,10 +1,10 @@
-import { Cliente } from 'pg';
+import { Client } from 'pg';
 
 let client;
 
 // Configuração do banco de dados antes dos testes
 beforeAll(async () => {
-  client = new Cliente({
+  client = new Client({
     host: 'localhost',
     port: 5432,
     user: 'lab_user',
