@@ -1,0 +1,24 @@
+name: Node Lab
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  rodar-node:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Faz checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configura o Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Instala dependências
+        run: npm install
+
+      - name: Roda o script
+        run: npm start
